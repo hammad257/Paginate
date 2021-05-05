@@ -2,11 +2,33 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import 'bootstrap/dist/css/bootstrap.css';
 import reportWebVitals from './reportWebVitals';
+import Grocery from "./grocerybud/index";
+import Pagination from "./Pagination/index";
+
+//Blog Post
+import BlogPost from "./Post/components/BlogPost";
+import NewPost from "./Post/components/newPost";
+import { Provider } from "react-redux";
+import { createStore,applyMiddleware } from "redux";
+import reducres from "./Post/reducres/index";
+import promise from "redux-promise";
+import { BrowserRouter,Switch,Route } from "react-router-dom";
+const applyMiddlewareWithSystem = applyMiddleware(promise)(createStore)
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Pagination/>
+    {/* <Provider store={applyMiddlewareWithSystem(reducres)}>
+      <BrowserRouter>
+      <Switch>
+      <Route path="/posts/new" component={NewPost}/>
+      <Route path="/" component={BlogPost}/>
+      </Switch>
+      </BrowserRouter>
+    </Provider> */}
   </React.StrictMode>,
   document.getElementById('root')
 );
